@@ -1,0 +1,56 @@
+{
+  "dashboard": {
+    "overview": "General system overview and statistics",
+    "quickActions": "Frequently used actions and shortcuts",
+    "recentActivity": "Latest system activities and events",
+    "systemHealth": "Current system status and health metrics"
+  },
+  "users": {
+    "roles": "User permission levels and access rights",
+    "status": "Account status (active, suspended, pending)",
+    "verification": "User identity verification process",
+    "twoFactor": "Two-factor authentication settings"
+  },
+  "modules": {
+    "installation": "Steps to install new system modules",
+    "configuration": "Module settings and parameters",
+    "dependencies": "Required modules and compatibility",
+    "updates": "Module version and update information"
+  },
+  "automation": {
+    "cronExpression": "Schedule format: * * * * * (minute hour day month weekday)",
+    "triggers": "Events that initiate automated actions",
+    "actions": "Tasks performed when automation runs",
+    "conditions": "Rules that determine when to execute actions"
+  },
+  "security": {
+    "permissions": "Access control and user rights",
+    "encryption": "Data protection and security measures",
+    "authentication": "User identity verification methods",
+    "apiKeys": "Keys for accessing system API"
+  },
+  "integration": {
+    "apiEndpoints": "Available API connection points",
+    "webhooks": "External service notification settings",
+    "oauth": "Third-party authentication setup",
+    "dataSync": "Data synchronization configuration"
+  },
+  "settings": {
+    "email": "Email server and notification settings",
+    "backup": "System backup and restore options",
+    "logging": "System activity recording options",
+    "maintenance": "System maintenance and cleanup tasks"
+  },
+  "reports": {
+    "generation": "Creating custom system reports",
+    "scheduling": "Automated report delivery settings",
+    "formats": "Available report output formats",
+    "filters": "Data filtering and selection options"
+  },
+  "forms": {
+    "required": "This field is mandatory",
+    "validation": "Input format and validation rules",
+    "autosave": "Automatic form data saving",
+    "submission": "Form processing and handling"
+  }
+}

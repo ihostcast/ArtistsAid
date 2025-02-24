@@ -1,0 +1,132 @@
+{
+  "system": {
+    "maintenance": {
+      "schedule": "0 0 * * *",
+      "tasks": [
+        {
+          "name": "cleanup_logs",
+          "type": "database",
+          "retention": "30d",
+          "priority": "low"
+        },
+        {
+          "name": "optimize_database",
+          "type": "database",
+          "interval": "7d",
+          "priority": "medium"
+        },
+        {
+          "name": "clear_cache",
+          "type": "cache",
+          "interval": "1d",
+          "priority": "high"
+        }
+      ]
+    },
+    "backup": {
+      "schedule": "0 2 * * *",
+      "retention": "90d",
+      "types": [
+        {
+          "name": "database",
+          "enabled": true,
+          "compress": true
+        },
+        {
+          "name": "files",
+          "enabled": true,
+          "exclude": ["temp", "cache"]
+        },
+        {
+          "name": "config",
+          "enabled": true,
+          "encrypt": true
+        }
+      ]
+    },
+    "monitoring": {
+      "interval": "5m",
+      "metrics": [
+        {
+          "name": "cpu_usage",
+          "threshold": 80,
+          "alert": true
+        },
+        {
+          "name": "memory_usage",
+          "threshold": 85,
+          "alert": true
+        },
+        {
+          "name": "disk_usage",
+          "threshold": 90,
+          "alert": true
+        }
+      ]
+    }
+  },
+  "modules": {
+    "sync": {
+      "schedule": "*/15 * * * *",
+      "retry": {
+        "attempts": 3,
+        "delay": "5m"
+      }
+    },
+    "update": {
+      "schedule": "0 3 * * *",
+      "autoInstall": false,
+      "notify": true
+    }
+  },
+  "automation": {
+    "queue": {
+      "concurrency": 5,
+      "timeout": "30m",
+      "retries": 3
+    },
+    "workers": {
+      "min": 1,
+      "max": 4,
+      "autoscale": true
+    }
+  },
+  "notifications": {
+    "email": {
+      "queue": "high",
+      "batch": {
+        "size": 50,
+        "interval": "5m"
+      }
+    },
+    "push": {
+      "queue": "medium",
+      "batch": {
+        "size": 100,
+        "interval": "1m"
+      }
+    }
+  },
+  "tasks": {
+    "cleanup": {
+      "tempFiles": {
+        "schedule": "0 * * * *",
+        "age": "24h"
+      },
+      "sessions": {
+        "schedule": "0 */6 * * *",
+        "age": "7d"
+      }
+    },
+    "reports": {
+      "generation": {
+        "schedule": "0 1 * * *",
+        "timeout": "1h"
+      },
+      "delivery": {
+        "schedule": "0 6 * * *",
+        "retry": true
+      }
+    }
+  }
+}

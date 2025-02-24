@@ -1,0 +1,61 @@
+{
+  "auth": {
+    "login_success": "Logged in successfully",
+    "logout_success": "Logged out successfully",
+    "registration_success": "Registration completed successfully",
+    "password_reset": "Password reset successfully",
+    "email_verified": "Email verified successfully",
+    "profile_updated": "Profile updated successfully"
+  },
+  "user": {
+    "created": "User created successfully",
+    "updated": "User updated successfully",
+    "deleted": "User deleted successfully",
+    "role_updated": "User role updated successfully",
+    "status_updated": "User status updated successfully",
+    "preferences_saved": "User preferences saved successfully"
+  },
+  "module": {
+    "installed": "Module installed successfully",
+    "updated": "Module updated successfully",
+    "deleted": "Module deleted successfully",
+    "activated": "Module activated successfully",
+    "deactivated": "Module deactivated successfully",
+    "configured": "Module configured successfully"
+  },
+  "file": {
+    "uploaded": "File uploaded successfully",
+    "deleted": "File deleted successfully",
+    "moved": "File moved successfully",
+    "renamed": "File renamed successfully",
+    "processed": "File processed successfully"
+  },
+  "payment": {
+    "processed": "Payment processed successfully",
+    "refunded": "Payment refunded successfully",
+    "subscription_created": "Subscription created successfully",
+    "subscription_updated": "Subscription updated successfully",
+    "subscription_cancelled": "Subscription cancelled successfully"
+  },
+  "system": {
+    "backup_created": "System backup created successfully",
+    "restored": "System restored successfully",
+    "updated": "System updated successfully",
+    "cache_cleared": "Cache cleared successfully",
+    "maintenance_completed": "Maintenance completed successfully"
+  },
+  "integration": {
+    "connected": "Integration connected successfully",
+    "disconnected": "Integration disconnected successfully",
+    "synced": "Data synchronized successfully",
+    "configured": "Integration configured successfully",
+    "tested": "Integration tested successfully"
+  },
+  "automation": {
+    "task_created": "Automation task created successfully",
+    "task_updated": "Automation task updated successfully",
+    "task_deleted": "Automation task deleted successfully",
+    "task_executed": "Automation task executed successfully",
+    "workflow_completed": "Workflow completed successfully"
+  }
+}

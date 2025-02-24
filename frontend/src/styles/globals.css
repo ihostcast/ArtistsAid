@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+[data-theme='dark'] {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-start-rgb));
+}
+
+/* Estilos para el modo oscuro */
+.dark {
+  color-scheme: dark;
+}
+
+.dark body {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+/* Transiciones suaves para cambios de tema */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Estilos personalizados para scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+/* Estilos para el editor de texto enriquecido */
+.ql-editor {
+  min-height: 200px;
+  font-size: 16px;
+}
+
+.dark .ql-editor {
+  color: #ffffff;
+}
+
+.dark .ql-toolbar {
+  background: #2d2d2d;
+  border-color: #404040 !important;
+}
+
+.dark .ql-container {
+  border-color: #404040 !important;
+}
+
+/* Animaciones para notificaciones */
+@keyframes slideIn {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.notification-enter {
+  animation: slideIn 0.3s ease forwards;
+}

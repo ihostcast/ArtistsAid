@@ -1,0 +1,65 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Funciones auxiliares
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && 
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['admin', 'superadmin'];
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Reglas para la colección de usuarios
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && isOwner(userId);
+      allow update: if isAdmin() || isOwner(userId);
+      allow delete: if isAdmin();
+    }
+
+    // Reglas para la colección de blogs
+    match /blogs/{blogId} {
+      allow read: if true; // Acceso público para leer
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Reglas para la colección de artistas
+    match /artists/{artistId} {
+      allow read: if true; // Acceso público para leer
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Reglas para la colección de eventos
+    match /events/{eventId} {
+      allow read: if true; // Acceso público para leer
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Reglas para la colección de reservas
+    match /bookings/{bookingId} {
+      allow read: if isAuthenticated() && (
+        isAdmin() || 
+        resource.data.userId == request.auth.uid
+      );
+      allow create: if isAuthenticated();
+      allow update: if isAuthenticated() && (
+        isAdmin() || 
+        resource.data.userId == request.auth.uid
+      );
+      allow delete: if isAdmin();
+    }
+
+    // Denegar acceso por defecto a todas las demás colecciones
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

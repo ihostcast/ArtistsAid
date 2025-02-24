@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtistsAid - Plataforma para Artistas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #6c757d;
+            --accent-color: #ffc107;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/img/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0;
+        }
+
+        .feature-card {
+            border: none;
+            border-radius: 15px;
+            transition: transform 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+        }
+
+        .blog-card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .footer {
+            background: #212529;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .social-icons i {
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .social-icons i:hover {
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <strong>ArtistsAid</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Características</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#categories">Categorías</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#blog">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#demos">Demos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contacto</a>
+                    </li>
+                </ul>
+                <div class="d-flex" id="authButtons">
+                    <a href="/login.html" class="btn btn-outline-primary me-2">Iniciar Sesión</a>
+                    <a href="/register.html" class="btn btn-primary">Registrarse</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 mb-4">Potencia tu Carrera Artística</h1>
+            <p class="lead mb-5">Únete a la comunidad líder de artistas, músicos, locutores y creativos</p>
+            <a href="/register.html" class="btn btn-primary btn-lg px-5">Comienza Ahora</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">¿Por qué ArtistsAid?</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card feature-card h-100 p-4">
+                        <div class="card-body text-center">
+                            <i class="bi bi-graph-up category-icon mb-4"></i>
+                            <h4>Gestión Profesional</h4>
+                            <p>Herramientas especializadas para administrar tu carrera artística</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card h-100 p-4">
+                        <div class="card-body text-center">
+                            <i class="bi bi-people category-icon mb-4"></i>
+                            <h4>Comunidad Activa</h4>
+                            <p>Conecta con otros artistas y profesionales del medio</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card h-100 p-4">
+                        <div class="card-body text-center">
+                            <i class="bi bi-trophy category-icon mb-4"></i>
+                            <h4>Oportunidades</h4>
+                            <p>Accede a eventos, colaboraciones y oportunidades exclusivas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Categorías Artísticas</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <i class="bi bi-music-note-beamed category-icon mb-3"></i>
+                            <h5>Músicos</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <i class="bi bi-mic category-icon mb-3"></i>
+                            <h5>Locutores</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <i class="bi bi-newspaper category-icon mb-3"></i>
+                            <h5>Periodistas</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <i class="bi bi-camera category-icon mb-3"></i>
+                            <h5>Fotógrafos</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Últimas Noticias</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card blog-card h-100">
+                        <img src="/img/blog1.jpg" class="card-img-top" alt="Evento de Música" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Festival de Música Independiente</h5>
+                            <p class="card-text">Descubre los mejores talentos emergentes en nuestro próximo festival.</p>
+                            <a href="/blog/festival-musica.html" class="btn btn-outline-primary">Leer más</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card blog-card h-100">
+                        <img src="/img/blog2.jpg" class="card-img-top" alt="Taller de Arte" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Talleres de Arte Digital</h5>
+                            <p class="card-text">Aprende las últimas técnicas de arte digital con expertos del medio.</p>
+                            <a href="#" class="btn btn-outline-primary">Leer más</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card blog-card h-100">
+                        <img src="/img/blog3.jpg" class="card-img-top" alt="Networking Artístico" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Encuentro de Networking</h5>
+                            <p class="card-text">Conecta con otros artistas y profesionales en nuestro evento mensual.</p>
+                            <a href="#" class="btn btn-outline-primary">Leer más</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demos" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Demos Destacados</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card blog-card h-100">
+                        <img src="/img/demo1.jpg" class="card-img-top" alt="Demo Musical" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Rock Alternativo</h5>
+                            <p class="card-text">Banda emergente con influencias de rock clásico y moderno.</p>
+                            <a href="/demos/rock-alternativo.html" class="btn btn-outline-primary">Escuchar Demo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card blog-card h-100">
+                        <img src="/img/demo2.jpg" class="card-img-top" alt="Demo Vocal" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Jazz Vocal</h5>
+                            <p class="card-text">Vocalista de jazz con un estilo único y contemporáneo.</p>
+                            <a href="#" class="btn btn-outline-primary">Escuchar Demo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card blog-card h-100">
+                        <img src="/img/demo3.jpg" class="card-img-top" alt="Demo Electrónico" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Música Electrónica</h5>
+                            <p class="card-text">Productor de EDM con un sonido fresco e innovador.</p>
+                            <a href="#" class="btn btn-outline-primary">Escuchar Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4 mt-4">
+                <div class="col-md-4">
+                    <div class="card blog-card h-100">
+                        <img src="/img/demo4.jpg" class="card-img-top" alt="Demo Pop" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Pop Indie</h5>
+                            <p class="card-text">Artista solista con letras profundas y melodías pegajosas.</p>
+                            <a href="#" class="btn btn-outline-primary">Escuchar Demo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card blog-card h-100">
+                        <img src="/img/demo5.jpg" class="card-img-top" alt="Demo Hip Hop" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Hip Hop Experimental</h5>
+                            <p class="card-text">Rapero con un estilo único y letras conscientes.</p>
+                            <a href="#" class="btn btn-outline-primary">Escuchar Demo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card blog-card h-100">
+                        <img src="/img/demo6.jpg" class="card-img-top" alt="Demo Folk" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Folk Moderno</h5>
+                            <p class="card-text">Dúo acústico con armonías vocales cautivadoras.</p>
+                            <a href="#" class="btn btn-outline-primary">Escuchar Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Contacto</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card shadow">
+                        <div class="card-body p-5">
+                            <form id="contactForm">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Mensaje</label>
+                                    <textarea class="form-control" id="message" rows="5" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>ArtistsAid</h5>
+                    <p>Potenciando el talento artístico desde 2025</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Enlaces Rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#features" class="text-white">Características</a></li>
+                        <li><a href="#categories" class="text-white">Categorías</a></li>
+                        <li><a href="#blog" class="text-white">Blog</a></li>
+                        <li><a href="#demos" class="text-white">Demos</a></li>
+                        <li><a href="#contact" class="text-white">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Síguenos</h5>
+                    <div class="social-icons">
+                        <a href="#" class="text-white"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-light">
+            <div class="text-center">
+                <p>&copy; 2025 ArtistsAid. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Check authentication status
+        document.addEventListener('DOMContentLoaded', function() {
+            const token = localStorage.getItem('token');
+            const authButtons = document.getElementById('authButtons');
+            
+            if (token) {
+                authButtons.innerHTML = `
+                    <a href="/dashboard.html" class="btn btn-outline-primary me-2">Dashboard</a>
+                    <button onclick="logout()" class="btn btn-primary">Cerrar Sesión</button>
+                `;
+            }
+        });
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('token');
+            window.location.href = '/';
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            // Aquí iría la lógica para enviar el formulario
+            alert('Mensaje enviado correctamente');
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>

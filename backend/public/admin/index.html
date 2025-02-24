@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtistsAid - Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            padding: 48px 0 0;
+            box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+        }
+        .sidebar-sticky {
+            position: relative;
+            top: 0;
+            height: calc(100vh - 48px);
+            padding-top: .5rem;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .navbar-brand {
+            padding-top: .75rem;
+            padding-bottom: .75rem;
+        }
+        .content {
+            margin-left: 240px;
+            padding: 20px;
+        }
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
+        .card {
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">ArtistsAid Admin</a>
+        <div class="w-100"></div>
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="#" id="logoutButton">Sign out</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#" data-section="overview">
+                                Overview
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-section="partners">
+                                Partners
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-section="providers">
+                                Providers
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-section="services">
+                                Services
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-section="users">
+                                Users
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main role="main" class="content">
+                <div id="overview" class="section active">
+                    <h2>Overview</h2>
+                    <div class="row mt-4">
+                        <div class="col-md-3">
+                            <div class="card bg-primary text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Users</h5>
+                                    <h2 id="totalUsers">0</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-success text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Partners</h5>
+                                    <h2 id="totalPartners">0</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-info text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Providers</h5>
+                                    <h2 id="totalProviders">0</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-warning text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Services</h5>
+                                    <h2 id="totalServices">0</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="partners" class="section">
+                    <h2>Partners Management</h2>
+                    <div class="table-responsive mt-4">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="partnersTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="providers" class="section">
+                    <h2>Providers Management</h2>
+                    <div class="table-responsive mt-4">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Partner</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="providersTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="services" class="section">
+                    <h2>Services Management</h2>
+                    <div class="table-responsive mt-4">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Partner</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="servicesTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="users" class="section">
+                    <h2>Users Management</h2>
+                    <div class="table-responsive mt-4">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Verificar token al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Checking for token and initializing dashboard...');
+            const token = localStorage.getItem('adminToken');
+            if (!token) {
+                console.log('No token found, redirecting to login');
+                window.location.href = '/admin/login';
+                return;
+            }
+
+            // Verificar si el token es válido
+            console.log('Token found, verifying...');
+            fetch('/api/auth/admin/verify', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(response => {
+                console.log('Token verification response:', response.status);
+                if (!response.ok) {
+                    throw new Error('Invalid token');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Token verified successfully:', data);
+                setupNavigation();
+                setupLogout();
+                loadOverviewData();
+            })
+            .catch(error => {
+                console.error('Token verification failed:', error);
+                localStorage.removeItem('adminToken');
+                window.location.href = '/admin/login';
+            });
+        });
+
+        // Cargar datos del overview
+        async function loadOverviewData() {
+            const token = localStorage.getItem('adminToken');
+            try {
+                const response = await fetch('/api/admin/overview', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                const data = await response.json();
+                updateDashboard(data);
+            } catch (error) {
+                console.error('Error loading overview data:', error);
+            }
+        }
+
+        // Actualizar el dashboard con los datos
+        function updateDashboard(data) {
+            document.getElementById('totalUsers').textContent = data.stats.users || 0;
+            document.getElementById('totalPartners').textContent = data.stats.partners || 0;
+            document.getElementById('totalProviders').textContent = data.stats.providers || 0;
+            document.getElementById('totalServices').textContent = data.stats.services || 0;
+        }
+
+        // Configurar navegación
+        function setupNavigation() {
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const sectionId = e.target.getAttribute('data-section');
+                    
+                    // Actualizar clases activas
+                    links.forEach(l => l.classList.remove('active'));
+                    e.target.classList.add('active');
+                    
+                    // Mostrar sección correspondiente
+                    showSection(sectionId);
+                });
+            });
+        }
+
+        // Mostrar sección
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        // Configurar logout
+        function setupLogout() {
+            document.getElementById('logoutButton').addEventListener('click', (e) => {
+                e.preventDefault();
+                localStorage.removeItem('adminToken');
+                window.location.href = '/admin/login';
+            });
+        }
+    </script>
+</body>
+</html>

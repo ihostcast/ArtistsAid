@@ -1,0 +1,71 @@
+{
+    "email": {
+        "from": {
+            "name": "ArtistsAid",
+            "email": "noreply@artistsaid.com"
+        },
+        "smtp": {
+            "host": "smtp.gmail.com",
+            "port": 587,
+            "secure": false,
+            "auth": {
+                "user": "SMTP_USER",
+                "pass": "SMTP_PASSWORD"
+            }
+        },
+        "templates": {
+            "verification": {
+                "subject": "Verify your email address",
+                "template": "verification-email"
+            },
+            "resetPassword": {
+                "subject": "Reset your password",
+                "template": "reset-password"
+            },
+            "welcome": {
+                "subject": "Welcome to ArtistsAid",
+                "template": "welcome"
+            }
+        }
+    },
+    "sms": {
+        "from": "ArtistsAid",
+        "twilio": {
+            "accountSid": "TWILIO_ACCOUNT_SID",
+            "authToken": "TWILIO_AUTH_TOKEN",
+            "phoneNumber": "TWILIO_PHONE_NUMBER"
+        },
+        "templates": {
+            "verification": "Your ArtistsAid verification code is: {{code}}",
+            "resetPassword": "Your ArtistsAid password reset code is: {{code}}",
+            "alert": "{{message}}"
+        }
+    },
+    "push": {
+        "android": {
+            "userAppKey": "ANDROID_USER_APP_GCM_KEY",
+            "artistAppKey": "ANDROID_ARTIST_APP_GCM_KEY"
+        },
+        "ios": {
+            "userAppKey": "IOS_USER_APP_GCM_KEY",
+            "artistAppKey": "IOS_ARTIST_APP_GCM_KEY"
+        },
+        "web": {
+            "apiKey": "WEB_APP_GOOGLE_KEY"
+        }
+    },
+    "verification": {
+        "email": {
+            "codeLength": 6,
+            "expirationMinutes": 30,
+            "maxAttempts": 3,
+            "cooldownMinutes": 15
+        },
+        "sms": {
+            "codeLength": 6,
+            "expirationMinutes": 15,
+            "maxAttempts": 3,
+            "cooldownMinutes": 15
+        }
+    }
+}

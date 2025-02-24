@@ -1,0 +1,167 @@
+{
+  "database": {
+    "development": {
+      "dialect": "postgres",
+      "host": "localhost",
+      "port": 5432,
+      "database": "artaid_dev",
+      "username": "postgres",
+      "password": "",
+      "logging": true,
+      "pool": {
+        "max": 5,
+        "min": 0,
+        "acquire": 30000,
+        "idle": 10000
+      }
+    },
+    "production": {
+      "dialect": "postgres",
+      "host": "DB_HOST",
+      "port": "DB_PORT",
+      "database": "DB_NAME",
+      "username": "DB_USER",
+      "password": "DB_PASSWORD",
+      "logging": false,
+      "pool": {
+        "max": 20,
+        "min": 5,
+        "acquire": 60000,
+        "idle": 10000
+      }
+    }
+  },
+  "redis": {
+    "development": {
+      "host": "localhost",
+      "port": 6379,
+      "password": null,
+      "db": 0
+    },
+    "production": {
+      "host": "REDIS_HOST",
+      "port": "REDIS_PORT",
+      "password": "REDIS_PASSWORD",
+      "db": 0
+    }
+  },
+  "email": {
+    "development": {
+      "service": "smtp",
+      "host": "smtp.gmail.com",
+      "port": 587,
+      "secure": false,
+      "auth": {
+        "user": "test@example.com",
+        "pass": "password"
+      }
+    },
+    "production": {
+      "service": "smtp",
+      "host": "SMTP_HOST",
+      "port": "SMTP_PORT",
+      "secure": true,
+      "auth": {
+        "user": "SMTP_USER",
+        "pass": "SMTP_PASS"
+      }
+    }
+  },
+  "storage": {
+    "development": {
+      "type": "local",
+      "path": "./uploads"
+    },
+    "production": {
+      "type": "s3",
+      "bucket": "S3_BUCKET",
+      "region": "S3_REGION",
+      "accessKey": "S3_ACCESS_KEY",
+      "secretKey": "S3_SECRET_KEY"
+    }
+  },
+  "security": {
+    "development": {
+      "jwtSecret": "dev_secret_key",
+      "sessionSecret": "dev_session_key",
+      "bcryptRounds": 10
+    },
+    "production": {
+      "jwtSecret": "JWT_SECRET",
+      "sessionSecret": "SESSION_SECRET",
+      "bcryptRounds": 12
+    }
+  },
+  "api": {
+    "development": {
+      "baseUrl": "http://localhost:3002",
+      "timeout": 30000,
+      "rateLimit": {
+        "windowMs": 900000,
+        "max": 100
+      }
+    },
+    "production": {
+      "baseUrl": "API_BASE_URL",
+      "timeout": 30000,
+      "rateLimit": {
+        "windowMs": 900000,
+        "max": 100
+      }
+    }
+  },
+  "modules": {
+    "development": {
+      "path": "./modules",
+      "autoload": true,
+      "allowInstall": true,
+      "allowUpdate": true
+    },
+    "production": {
+      "path": "./modules",
+      "autoload": true,
+      "allowInstall": false,
+      "allowUpdate": false
+    }
+  },
+  "logging": {
+    "development": {
+      "level": "debug",
+      "format": "dev",
+      "file": "logs/development.log"
+    },
+    "production": {
+      "level": "info",
+      "format": "combined",
+      "file": "logs/production.log"
+    }
+  },
+  "cache": {
+    "development": {
+      "enabled": false,
+      "ttl": 300
+    },
+    "production": {
+      "enabled": true,
+      "ttl": 3600
+    }
+  },
+  "cors": {
+    "development": {
+      "origin": "*",
+      "methods": ["GET", "POST", "PUT", "DELETE", "PATCH"],
+      "allowedHeaders": ["Content-Type", "Authorization"],
+      "exposedHeaders": ["Content-Range", "X-Content-Range"],
+      "credentials": true,
+      "maxAge": 86400
+    },
+    "production": {
+      "origin": "CORS_ORIGIN",
+      "methods": ["GET", "POST", "PUT", "DELETE", "PATCH"],
+      "allowedHeaders": ["Content-Type", "Authorization"],
+      "exposedHeaders": ["Content-Range", "X-Content-Range"],
+      "credentials": true,
+      "maxAge": 86400
+    }
+  }
+}

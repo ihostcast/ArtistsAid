@@ -1,0 +1,24 @@
+{
+  "success": {
+    "USER_CREATED": "Usuario creado exitosamente",
+    "USER_UPDATED": "Usuario actualizado exitosamente",
+    "USER_DELETED": "Usuario eliminado exitosamente",
+    "MODULE_INSTALLED": "Módulo instalado exitosamente",
+    "MODULE_UNINSTALLED": "Módulo desinstalado exitosamente",
+    "SETTINGS_UPDATED": "Configuración actualizada exitosamente"
+  },
+  "error": {
+    "USER_NOT_FOUND": "Usuario no encontrado",
+    "INVALID_CREDENTIALS": "Credenciales inválidas",
+    "UNAUTHORIZED": "No autorizado",
+    "MODULE_NOT_FOUND": "Módulo no encontrado",
+    "INVALID_TOKEN": "Token inválido o expirado",
+    "SERVER_ERROR": "Error interno del servidor"
+  },
+  "validation": {
+    "REQUIRED_FIELD": "Campo requerido",
+    "INVALID_EMAIL": "Email inválido",
+    "INVALID_PASSWORD": "La contraseña debe tener al menos 8 caracteres",
+    "PASSWORDS_NOT_MATCH": "Las contraseñas no coinciden"
+  }
+}

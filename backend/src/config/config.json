@@ -1,0 +1,35 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "artistsaid_dev",
+    "host": "postgres",
+    "dialect": "postgres",
+    "logging": true
+  },
+  "test": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "artaid_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "logging": false
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL",
+    "dialect": "postgres",
+    "logging": false,
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    },
+    "pool": {
+      "max": 10,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
+    }
+  }
+}

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtistsAid - Dashboard de Locutor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #6c757d;
+            --accent-color: #ffc107;
+        }
+        
+        .sidebar {
+            min-height: 100vh;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-right: 1px solid #dee2e6;
+        }
+
+        .main-content {
+            padding: 20px;
+        }
+
+        .nav-link {
+            padding: 8px 16px;
+            color: #333;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .stats-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .stats-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .profile-header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/images/broadcaster-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            object-fit: cover;
+        }
+
+        .schedule-item {
+            border-left: 3px solid var(--primary-color);
+            padding-left: 15px;
+            margin-bottom: 15px;
+        }
+
+        .schedule-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .program-card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .program-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .live-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: #dc3545;
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 d-md-block sidebar">
+                <div class="position-sticky">
+                    <div class="text-center mb-4">
+                        <h4>Dashboard Locutor</h4>
+                    </div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#overview">
+                                <i class="bi bi-house-door me-2"></i>Vista General
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#schedule">
+                                <i class="bi bi-calendar3 me-2"></i>Programación
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#programs">
+                                <i class="bi bi-mic me-2"></i>Programas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#audience">
+                                <i class="bi bi-people me-2"></i>Audiencia
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#messages">
+                                <i class="bi bi-chat me-2"></i>Mensajes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#analytics">
+                                <i class="bi bi-graph-up me-2"></i>Análisis
+                            </a>
+                        </li>
+                        <li class="nav-item mt-4">
+                            <a class="nav-link text-danger" href="#" onclick="logout()">
+                                <i class="bi bi-box-arrow-right me-2"></i>Cerrar Sesión
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
+                <!-- Profile Header -->
+                <div class="profile-header mb-4">
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <img src="https://via.placeholder.com/150" alt="Profile" class="profile-image">
+                        </div>
+                        <div class="col">
+                            <h2 id="broadcasterName">Nombre del Locutor</h2>
+                            <p id="mediaType" class="mb-2">Tipo de Medio</p>
+                            <p id="mediaName" class="mb-0">Nombre del Medio</p>
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-danger">
+                                <span class="live-indicator"></span>
+                                EN VIVO
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Overview -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3">
+                        <div class="card stats-card">
+                            <div class="card-body text-center">
+                                <i class="bi bi-people fs-1 text-primary mb-2"></i>
+                                <h3 id="listenersCount">0</h3>
+                                <p class="mb-0">Oyentes</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card stats-card">
+                            <div class="card-body text-center">
+                                <i class="bi bi-broadcast fs-1 text-success mb-2"></i>
+                                <h3 id="programsCount">0</h3>
+                                <p class="mb-0">Programas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card stats-card">
+                            <div class="card-body text-center">
+                                <i class="bi bi-clock-history fs-1 text-warning mb-2"></i>
+                                <h3 id="hoursCount">0</h3>
+                                <p class="mb-0">Horas al Aire</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card stats-card">
+                            <div class="card-body text-center">
+                                <i class="bi bi-star fs-1 text-danger mb-2"></i>
+                                <h3 id="ratingCount">0</h3>
+                                <p class="mb-0">Calificación</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Today's Schedule -->
+                <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Programación de Hoy</h5>
+                        <button class="btn btn-primary btn-sm">+ Nuevo Programa</button>
+                    </div>
+                    <div class="card-body">
+                        <div id="scheduleList">
+                            <!-- Schedule items will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Popular Programs -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Programas Populares</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-4" id="popularPrograms">
+                            <!-- Popular programs will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Audience Metrics -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Métricas de Audiencia</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="audienceChart"></canvas>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Check authentication on load
+        document.addEventListener('DOMContentLoaded', async function() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = '/login.html';
+                return;
+            }
+
+            try {
+                // Load broadcaster profile
+                const response = await fetch('/api/broadcaster/profile', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (response.status === 401) {
+                    logout();
+                    return;
+                }
+
+                const profile = await response.json();
+                
+                // Update profile information
+                document.getElementById('broadcasterName').textContent = profile.name;
+                document.getElementById('mediaType').textContent = profile.mediaType;
+                document.getElementById('mediaName').textContent = profile.mediaName;
+                
+                // Update stats
+                document.getElementById('listenersCount').textContent = profile.stats.listeners;
+                document.getElementById('programsCount').textContent = profile.stats.programs;
+                document.getElementById('hoursCount').textContent = profile.stats.hours;
+                document.getElementById('ratingCount').textContent = profile.stats.rating;
+
+                // Load schedule
+                loadTodaySchedule();
+                
+                // Load popular programs
+                loadPopularPrograms();
+
+                // Initialize audience metrics chart
+                initAudienceChart();
+
+            } catch (error) {
+                console.error('Error loading profile:', error);
+            }
+        });
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('token');
+            window.location.href = '/login.html';
+        }
+
+        // Load today's schedule
+        async function loadTodaySchedule() {
+            const token = localStorage.getItem('token');
+            try {
+                const response = await fetch('/api/broadcaster/schedule/today', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                const schedule = await response.json();
+                const scheduleList = document.getElementById('scheduleList');
+                
+                scheduleList.innerHTML = schedule.map(item => `
+                    <div class="schedule-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-1">${item.title}</h6>
+                                <small class="text-muted">${item.time}</small>
+                            </div>
+                            <div>
+                                ${item.isLive ? '<span class="badge bg-danger">EN VIVO</span>' : ''}
+                                <button class="btn btn-sm btn-outline-primary ms-2">Editar</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading schedule:', error);
+            }
+        }
+
+        // Load popular programs
+        async function loadPopularPrograms() {
+            const token = localStorage.getItem('token');
+            try {
+                const response = await fetch('/api/broadcaster/programs/popular', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                const programs = await response.json();
+                const programsList = document.getElementById('popularPrograms');
+                
+                programsList.innerHTML = programs.map(program => `
+                    <div class="col-md-4">
+                        <div class="card program-card">
+                            <img src="${program.image}" class="card-img-top" alt="${program.title}">
+                            <div class="card-body">
+                                <h5 class="card-title">${program.title}</h5>
+                                <p class="card-text">${program.description}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted">${program.listeners} oyentes</small>
+                                    <button class="btn btn-sm btn-outline-primary">Ver Detalles</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading popular programs:', error);
+            }
+        }
+
+        // Initialize audience metrics chart
+        function initAudienceChart() {
+            const ctx = document.getElementById('audienceChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
+                    datasets: [{
+                        label: 'Oyentes por Día',
+                        data: [1200, 1900, 3000, 5000, 2000, 3000, 4000],
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Audiencia Semanal'
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

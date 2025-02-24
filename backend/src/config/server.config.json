@@ -1,0 +1,38 @@
+{
+  "server": {
+    "port": 3001,
+    "host": "localhost",
+    "protocol": "http",
+    "timeouts": {
+      "idleSocket": 60000,
+      "headerTimeout": 60000,
+      "keepAliveTimeout": 5000
+    }
+  },
+  "cors": {
+    "origin": "*",
+    "methods": ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    "allowedHeaders": ["Content-Type", "Authorization"],
+    "exposedHeaders": ["Content-Range", "X-Content-Range"],
+    "credentials": true,
+    "maxAge": 86400
+  },
+  "rateLimit": {
+    "windowMs": 900000,
+    "max": 100,
+    "standardHeaders": true,
+    "legacyHeaders": false
+  },
+  "security": {
+    "trustProxy": 1,
+    "poweredBy": false,
+    "xssProtection": true,
+    "noSniff": true,
+    "hidePoweredBy": true,
+    "frameGuard": true
+  },
+  "clustering": {
+    "enabled": false,
+    "workers": 1
+  }
+}

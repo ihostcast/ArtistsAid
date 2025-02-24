@@ -1,0 +1,54 @@
+{
+  "dashboard": {
+    "welcome": "Welcome to ArtistsAid Admin Panel",
+    "overview": "System Overview",
+    "statistics": "System Statistics",
+    "recent_activity": "Recent Activity"
+  },
+  "modules": {
+    "install_success": "Module installed successfully",
+    "install_error": "Error installing module",
+    "update_success": "Module updated successfully",
+    "update_error": "Error updating module",
+    "delete_success": "Module deleted successfully",
+    "delete_error": "Error deleting module",
+    "activation_success": "Module activated successfully",
+    "activation_error": "Error activating module",
+    "deactivation_success": "Module deactivated successfully",
+    "deactivation_error": "Error deactivating module"
+  },
+  "automation": {
+    "task_created": "Automation task created successfully",
+    "task_updated": "Automation task updated successfully",
+    "task_deleted": "Automation task deleted successfully",
+    "task_started": "Automation task started successfully",
+    "task_stopped": "Automation task stopped successfully",
+    "task_error": "Error in automation task",
+    "invalid_cron": "Invalid cron expression"
+  },
+  "users": {
+    "create_success": "User created successfully",
+    "update_success": "User updated successfully",
+    "delete_success": "User deleted successfully",
+    "create_error": "Error creating user",
+    "update_error": "Error updating user",
+    "delete_error": "Error deleting user",
+    "invalid_role": "Invalid user role"
+  },
+  "organizations": {
+    "create_success": "Organization created successfully",
+    "update_success": "Organization updated successfully",
+    "delete_success": "Organization deleted successfully",
+    "create_error": "Error creating organization",
+    "update_error": "Error updating organization",
+    "delete_error": "Error deleting organization"
+  },
+  "causes": {
+    "create_success": "Cause created successfully",
+    "update_success": "Cause updated successfully",
+    "delete_success": "Cause deleted successfully",
+    "create_error": "Error creating cause",
+    "update_error": "Error updating cause",
+    "delete_error": "Error deleting cause"
+  }
+}

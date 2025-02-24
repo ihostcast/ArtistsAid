@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - ArtistsAid</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style>
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/img/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            min-height: 100vh;
+        }
+        .form-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-top: 60px;
+        }
+        .required::after {
+            content: '*';
+            color: red;
+            margin-left: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <strong>ArtistsAid</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login.html">Iniciar Sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="form-container">
+                        <h2 class="text-center mb-4">Registro en ArtistsAid</h2>
+                        <form id="registrationForm" class="needs-validation" novalidate>
+                            <!-- Información Personal -->
+                            <h4 class="mb-3">Información Personal</h4>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="firstName" class="form-label required">Nombre</label>
+                                    <input type="text" class="form-control" id="firstName" name="firstName" required>
+                                    <div class="invalid-feedback">Por favor ingresa tu nombre</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="lastName" class="form-label required">Apellido</label>
+                                    <input type="text" class="form-control" id="lastName" name="lastName" required>
+                                    <div class="invalid-feedback">Por favor ingresa tu apellido</div>
+                                </div>
+                            </div>
+
+                            <!-- Información de Contacto -->
+                            <h4 class="mt-4 mb-3">Información de Contacto</h4>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label required">Correo Electrónico</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                    <div class="invalid-feedback">Por favor ingresa un correo electrónico válido</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="phone" class="form-label required">Teléfono</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone" 
+                                           pattern="^\+?[1-9]\d{1,14}$" required 
+                                           placeholder="+1234567890">
+                                    <div class="invalid-feedback">Por favor ingresa un número de teléfono válido</div>
+                                </div>
+                            </div>
+
+                            <!-- Tipo de Usuario -->
+                            <h4 class="mt-4 mb-3">Perfil Profesional</h4>
+                            <div class="mb-3">
+                                <label for="role" class="form-label required">Tipo de Usuario</label>
+                                <select class="form-select" id="role" name="role" required>
+                                    <option value="">Selecciona tu rol</option>
+                                    <option value="artist">Artista</option>
+                                    <option value="producer">Productor Musical</option>
+                                    <option value="manager">Manager</option>
+                                    <option value="executive_producer">Productor Ejecutivo</option>
+                                    <option value="sound_engineer">Ingeniero de Sonido</option>
+                                    <option value="photo_producer">Productor de Fotografía</option>
+                                </select>
+                                <div class="invalid-feedback">Por favor selecciona tu rol</div>
+                            </div>
+
+                            <!-- Contraseña -->
+                            <h4 class="mt-4 mb-3">Seguridad</h4>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="password" class="form-label required">Contraseña</label>
+                                    <input type="password" class="form-control" id="password" name="password" 
+                                           pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" 
+                                           required>
+                                    <div class="invalid-feedback">
+                                        La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, 
+                                        un número y un carácter especial
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="confirmPassword" class="form-label required">Confirmar Contraseña</label>
+                                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                                    <div class="invalid-feedback">Las contraseñas no coinciden</div>
+                                </div>
+                            </div>
+
+                            <!-- Verificación -->
+                            <div class="mt-4">
+                                <div class="g-recaptcha" data-sitekey="6Lct1N8qAAAAAGfqEWNmT5vmEJdcuTJ6t8-bCW_j"></div>
+                                <div id="recaptchaError" class="invalid-feedback d-none">
+                                    Por favor completa el captcha
+                                </div>
+                            </div>
+
+                            <!-- Términos y Condiciones -->
+                            <div class="mt-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="terms" required>
+                                    <label class="form-check-label" for="terms">
+                                        Acepto los <a href="/legal/terms.html">Términos y Condiciones</a> y la 
+                                        <a href="/legal/privacy.html">Política de Privacidad</a>
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        Debes aceptar los términos y condiciones para continuar
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Botón de Registro -->
+                            <div class="mt-4">
+                                <button type="submit" class="btn btn-primary w-100 btn-lg">Registrarse</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Verificación -->
+    <div class="modal fade" id="verificationModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Verificación de Cuenta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Te hemos enviado dos códigos de verificación:</p>
+                    <ul>
+                        <li>Un código por correo electrónico</li>
+                        <li>Un código por SMS a tu teléfono</li>
+                    </ul>
+                    <p>Por favor, ingresa ambos códigos para verificar tu cuenta:</p>
+                    <div class="mb-3">
+                        <label for="emailCode" class="form-label">Código de Email</label>
+                        <input type="text" class="form-control" id="emailCode" maxlength="6" 
+                               placeholder="Ingresa el código recibido por email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="smsCode" class="form-label">Código de SMS</label>
+                        <input type="text" class="form-control" id="smsCode" maxlength="6"
+                               placeholder="Ingresa el código recibido por SMS">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="verifyCode()">Verificar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('registrationForm');
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirmPassword');
+
+            // Validación de contraseñas
+            function validatePassword() {
+                if (password.value !== confirmPassword.value) {
+                    confirmPassword.setCustomValidity('Las contraseñas no coinciden');
+                } else {
+                    confirmPassword.setCustomValidity('');
+                }
+            }
+
+            password.addEventListener('change', validatePassword);
+            confirmPassword.addEventListener('keyup', validatePassword);
+
+            // Validación del formulario
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                // Validar reCAPTCHA
+                const recaptchaResponse = grecaptcha.getResponse();
+                if (!recaptchaResponse) {
+                    document.getElementById('recaptchaError').classList.remove('d-none');
+                    return;
+                }
+                document.getElementById('recaptchaError').classList.add('d-none');
+
+                if (!form.checkValidity()) {
+                    event.stopPropagation();
+                    form.classList.add('was-validated');
+                    return;
+                }
+
+                // Recopilar datos del formulario
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+
+                // Enviar datos al servidor
+                fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        ...data,
+                        recaptchaToken: recaptchaResponse
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Mostrar modal de verificación
+                        const verificationModal = new bootstrap.Modal(document.getElementById('verificationModal'));
+                        verificationModal.show();
+                    } else {
+                        alert(data.message || 'Error en el registro');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error en el registro');
+                });
+            });
+
+            // Función para verificar los códigos
+            window.verifyCode = function() {
+                const emailCode = document.getElementById('emailCode').value;
+                const smsCode = document.getElementById('smsCode').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+
+                if (!emailCode || !smsCode) {
+                    alert('Por favor ingresa ambos códigos de verificación');
+                    return;
+                }
+
+                fetch('/api/auth/verify', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email,
+                        phone,
+                        emailCode,
+                        smsCode
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Redirigir al dashboard según el rol
+                        const role = document.getElementById('role').value;
+                        if (role === 'admin') {
+                            window.location.href = '/admin/dashboard.html';
+                        } else {
+                            window.location.href = '/dashboard.html';
+                        }
+                    } else {
+                        alert(data.message || 'Error en la verificación');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error en la verificación');
+                });
+            };
+        });
+    </script>
+</body>
+</html>
