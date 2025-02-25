@@ -6,26 +6,22 @@
       "use": "@vercel/next"
     }
   ],
-  "routes": [
-    {
-      "src": "/admin(.*)",
-      "host": "admin.artistsaid.com",
-      "dest": "/admin$1"
-    },
-    {
-      "src": "/(.*)",
-      "host": "artistsaid.com",
-      "dest": "/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/"
-    }
-  ],
   "rewrites": [
     {
       "source": "/admin/:path*",
       "destination": "/admin/:path*"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "admin.artistsaid.com"
+        }
+      ],
+      "destination": "/admin"
     }
   ],
   "headers": [
@@ -48,7 +44,8 @@
     }
   ],
   "env": {
-    "NEXT_PUBLIC_API_URL": "https://artistsaid.vercel.app/api",
-    "NEXT_PUBLIC_APP_URL": "https://artistsaid.vercel.app"
+    "NEXT_PUBLIC_API_URL": "https://artistsaid.com/api",
+    "NEXT_PUBLIC_APP_URL": "https://artistsaid.com",
+    "NEXT_PUBLIC_ADMIN_URL": "https://admin.artistsaid.com"
   }
 }
