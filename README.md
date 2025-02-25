@@ -1,144 +1,65 @@
-# ArtistsAid Platform
+# Startup - Free Next.js Startup Website Template
 
-Plataforma para conectar artistas y organizaciones culturales.
+Startup free, open-source, and premium-quality startup website template for Next.js comes with everything you need to launch a startup, business, or SaaS website, including all essential sections, components, and pages.
 
-## Configuración del Proyecto
+If you're looking for a high-quality and visually appealing, feature-rich Next.js Template for your next startup, SaaS, or business website, this is the perfect choice and starting point for you!
 
-### Requisitos Previos
-- Node.js >= 18.0.0
-- PostgreSQL (Neon Database)
-- Vercel CLI (opcional para despliegue local)
+### ✨ Key Features
+- Crafted for Startup and SaaS Business
+- Next.js and Tailwind CSS
+- All Essential Business Sections and Pages
+- High-quality and Clean Design
+- Dark and Light Version
+- TypeScript Support
+and Much More ...
 
-### Variables de Entorno
-```env
-NODE_ENV=production
-DATABASE_URL=postgresql://[user]:[password]@[host]/[database]?sslmode=require
-JWT_SECRET=[your-jwt-secret]
-MAIN_DOMAIN=https://artistsaid.vercel.app
-ADMIN_DOMAIN=https://admin.artistsaid.vercel.app
-```
+### 🙌 Detailed comparison between the Free and Pro versions of Startup
 
-### Instalación
+| Feature             | Free | Pro |
+|---------------------|------------|----------|
+| Next.js Landing Page             | ✅ Yes      | ✅ Yes      |
+| All The Integrations - Auth, DB, Payments, Blog and many more ...             | ❌ No      | ✅ Yes |
+| Homepage Variations             | 1      | 2 |
+| Additional SaaS Pages and Components             | ❌ No      | ✅ Yes |
+| Functional Blog with Sanity       | ❌ No      | ✅ Yes | ✅ Yes |
+| Use with Commercial Projects            | ✅ Yes      | ✅ Yes      |
+| Lifetime Free Updates             | ✅ Yes      | ✅ Yes |
+| Email Support       | ❌ No         | ✅ Yes       |
+| Community Support         | ✅ Yes         | ✅ Yes       |
 
-1. Clonar el repositorio:
-```bash
-git clone https://github.com/ihostcast/ArtistsAid.git
-cd ArtistsAid
-```
 
-2. Instalar dependencias:
-```bash
-cd backend
-npm install
-```
+### [🔥 Get Startup Pro](https://nextjstemplates.com/templates/saas-starter-startup)
 
-3. Configurar la base de datos:
-```bash
-npx sequelize-cli db:migrate
-npx sequelize-cli db:seed:all
-```
+[![Startup Pro](https://raw.githubusercontent.com/NextJSTemplates/startup-nextjs/main/startup-pro.webp)](https://nextjstemplates.com/templates/saas-starter-startup)
 
-### Desarrollo Local
+Startup Pro - Expertly crafted for fully-functional, high-performing SaaS startup websites. Comes with with Authentication, Database, Blog, and all the essential integrations necessary for SaaS business sites.
 
-1. Iniciar el servidor de desarrollo:
-```bash
-npm run dev
-```
 
-2. Acceder a:
-- Frontend: http://localhost:3000
-- Panel Admin: http://localhost:3000/admin
+### [🚀 View Free Demo](https://startup.nextjstemplates.com/)
 
-## Despliegue en Vercel
+### [🚀 View Pro Demo](https://startup-pro.nextjstemplates.com/)
 
-1. Configurar proyecto en Vercel:
-```bash
-vercel
-```
+### [📦 Download](https://nextjstemplates.com/templates/startup)
 
-2. Configurar variables de entorno en Vercel:
-```bash
-vercel env add DATABASE_URL
-vercel env add JWT_SECRET
-vercel env add NODE_ENV
-vercel env add MAIN_DOMAIN
-vercel env add ADMIN_DOMAIN
-```
+### [🔥 Get Pro](https://nextjstemplates.com/templates/saas-starter-startup)
 
-3. Desplegar a producción:
-```bash
-vercel --prod
-```
+### [🔌 Documentation](https://nextjstemplates.com/docs)
 
-### Acceso al Panel de Administración
+### ⚡ Deploy Now
 
-URL: https://artists-aid.vercel.app/admin/login
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FNextJSTemplates%2Fstartup-nextjs)
 
-Credenciales por defecto:
-- Email: admin@artistsaid.com
-- Password: Admin123!
+[![Deploy with Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/NextJSTemplates/startup-nextjs)
 
-## Estructura del Proyecto
 
-```
-backend/
-├── api/              # Funciones serverless
-├── src/
-│   ├── config/      # Configuración
-│   ├── models/      # Modelos de datos
-│   ├── routes/      # Rutas de la API
-│   ├── middleware/  # Middleware
-│   └── public/      # Archivos estáticos
-├── migrations/      # Migraciones de base de datos
-└── seeders/        # Datos iniciales
-```
+### 📄 License
+Startup is 100% free and open-source, feel free to use with your personal and commercial projects.
 
-## Características
+### 💜 Support
+If you like the template, please star this repository to inspire the team to create more stuff like this and reach more users like you!
 
-- Autenticación JWT
-- Panel de administración
-- API RESTful
-- Base de datos PostgreSQL (Neon)
-- Despliegue serverless en Vercel
+### ✨ Explore and Download - Free [Next.js Templates](https://nextjstemplates.com)
 
-## Tecnologías
-
-- Backend:
-  - Node.js
-  - Express
-  - Sequelize
-  - @neondatabase/serverless
-  - JWT
-
-- Frontend:
-  - HTML/CSS/JavaScript
-  - Bootstrap 5
-  - Fetch API
-
-## Seguridad
-
-- SSL/TLS para conexiones de base de datos
-- Encriptación de contraseñas con bcrypt
-- Autenticación basada en tokens JWT
-- Headers de seguridad con Helmet
-- CORS configurado para dominios específicos
-
-## Mantenimiento
-
-### Base de Datos
-- Backups automáticos con Neon
-- Migraciones versionadas
-- Pooling de conexiones optimizado
-
-### Monitoreo
-- Logs en Vercel
-- Métricas de base de datos en Neon
-- Alertas de errores configuradas
-
-## Licencia
-
-ISC
-
-## Autor
-
-ODG Music
+### Update Log
+**29 Jan 2025**
+- Upgraded to Next.js 15
