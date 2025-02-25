@@ -8,8 +8,43 @@
   ],
   "routes": [
     {
+      "src": "/admin(.*)",
+      "host": "admin.artistsaid.com",
+      "dest": "/admin$1"
+    },
+    {
+      "src": "/(.*)",
+      "host": "artistsaid.com",
+      "dest": "/$1"
+    },
+    {
       "src": "/(.*)",
       "dest": "/"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/admin/:path*",
+      "destination": "/admin/:path*"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
     }
   ],
   "env": {
