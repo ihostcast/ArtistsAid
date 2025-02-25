@@ -1,18 +1,17 @@
 'use client';
 
-import React from 'react';
+import { type ReactNode, useEffect } from 'react';
 import { db } from '@/config/firebase';
 import { useAuth } from '@/hooks/useAuth';
 import { doc, getDoc } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
-import { ReactNode, useEffect } from 'react';
 
 interface AdminProtectedRouteProps {
   children: ReactNode;
   requiredRole?: 'admin' | 'superadmin';
 }
 
-export default function AdminProtectedRoute({ children, requiredRole = 'admin' }: AdminProtectedRouteProps) {
+const AdminProtectedRoute = ({ children, requiredRole = 'admin' }: AdminProtectedRouteProps) => {
   const router = useRouter();
   const { user, loading } = useAuth();
 
@@ -56,4 +55,6 @@ export default function AdminProtectedRoute({ children, requiredRole = 'admin' }
   }
 
   return <>{children}</>;
-}
+};
+
+export default AdminProtectedRoute;
