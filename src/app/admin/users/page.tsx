@@ -1,5 +1,6 @@
 'use client';
 
+import { type ReactNode } from 'react';
 import DashboardLayout from '@/components/admin/Layout/DashboardLayout';
 import AdminProtectedRoute from '@/components/Auth/AdminProtectedRoute';
 import { db } from '@/config/firebase';
@@ -7,7 +8,7 @@ import { UserProfile, UserStatus } from '@/types/user';
 import { collection, getDocs } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 
-export default function UsersPage() {
+const UsersPage = () => {
   const [users, setUsers] = useState<UserProfile[]>([]);
 
   useEffect(() => {
@@ -118,4 +119,6 @@ export default function UsersPage() {
       </DashboardLayout>
     </AdminProtectedRoute>
   );
-}
+};
+
+export default UsersPage;
