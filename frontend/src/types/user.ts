@@ -1,12 +1,14 @@
 import { Timestamp } from 'firebase/firestore';
 
 export type UserRole = 'user' | 'admin' | 'superadmin';
+export type UserStatus = 'active' | 'inactive' | 'suspended';
 
 export interface UserProfile {
   uid: string;
   email: string | null;
   displayName: string | null;
   role: UserRole;
+  status?: UserStatus;
   createdAt: Date;
   updatedAt: Date;
   photoURL?: string | null;
