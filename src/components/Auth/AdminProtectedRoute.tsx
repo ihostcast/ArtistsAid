@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { db } from '@/config/firebase';
 import { useAuth } from '@/hooks/useAuth';
 import { doc, getDoc } from 'firebase/firestore';
