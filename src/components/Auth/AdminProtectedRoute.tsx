@@ -1,8 +1,8 @@
 'use client';
 
 import { type ReactNode, useEffect } from 'react';
-import { db } from '../../config/firebase';
-import { useAuth } from '../../hooks/useAuth';
+import { db } from '@/config/firebase';
+import { useAuth } from '@/hooks/useAuth';
 import { doc, getDoc } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
 
@@ -16,6 +16,8 @@ const AdminProtectedRoute = ({ children, requiredRole = 'admin' }: AdminProtecte
   const { user, loading } = useAuth();
 
   useEffect(() => {
+    let isMounted = true;
+
     async function checkUserRole() {
       if (!loading) {
         if (!user) {
@@ -25,8 +27,9 @@ const AdminProtectedRoute = ({ children, requiredRole = 'admin' }: AdminProtecte
 
         try {
           const userDoc = await getDoc(doc(db, 'users', user.uid));
-          const userData = userDoc.data();
+          if (!isMounted) return;
 
+          const userData = userDoc.data();
           if (!userData || (userData.role !== 'admin' && userData.role !== 'superadmin')) {
             router.push('/admin/dashboard');
             return;
@@ -38,12 +41,18 @@ const AdminProtectedRoute = ({ children, requiredRole = 'admin' }: AdminProtecte
           }
         } catch (error) {
           console.error('Error checking user role:', error);
-          router.push('/admin/login');
+          if (isMounted) {
+            router.push('/admin/login');
+          }
         }
       }
     }
 
     checkUserRole();
+
+    return () => {
+      isMounted = false;
+    };
   }, [user, loading, router, requiredRole]);
 
   if (loading) {
