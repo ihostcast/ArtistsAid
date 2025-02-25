@@ -1,5 +1,5 @@
 {
-  "name": "ARTAID",
+  "name": "artaid",
   "version": "1.0.0",
   "description": "ArtistsAid - Plataforma para artistas y organizaciones culturales",
   "main": "api/index.js",
@@ -55,5 +55,6 @@
     "typescript": "^5.3.3"
   },
   "author": "ODG Music",
-  "license": "ISC"
+  "license": "ISC",
+  "keywords": []
 }

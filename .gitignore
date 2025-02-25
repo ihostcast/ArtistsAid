@@ -1,54 +1,42 @@
 # Dependencies
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Environment variables
-
-# env files
-.env
-.env.local
-.env.local.example
-.env.development.local
-.env.test.local
-.env.production.local
-
-# Build output
-dist/
-build/
-.next/
-
-# IDE and editor files
-.idea/
-.vscode/
-*.swp
-*.swo
-.DS_Store
-
-# Vercel
-.vercel/
-.now/
-
-# Logs
-logs/
-*.log
-
-# Database
-*.sqlite
-*.sqlite3
+**/node_modules
+**/.pnp
+**/.pnp.js
 
 # Testing
-coverage/
+**/coverage
 
-# Temporary files
-tmp/
-temp/
+# Next.js
+**/.next/
+**/out/
 
-# Docker
-docker-compose.override.yml
+# Production
+**/build
+**/dist
 
-# Custom
-.cache/
-.env*.local
-.vercel
+# Misc
+**/.DS_Store
+**/*.pem
+**/.env
+**/.env.local
+**/.env.development.local
+**/.env.test.local
+**/.env.production.local
+
+# Debug
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+
+# Local Netlify folder
+**/.netlify
+
+# Vercel
+**/.vercel
+
+# Firebase
+**/.firebase
+**/firebase-debug.log
+
+# SQLite
+**/*.sqlite
