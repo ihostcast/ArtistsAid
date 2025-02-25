@@ -23,6 +23,8 @@ interface UserData {
   phoneNumber: string | null;
   emailVerified: boolean;
   phoneVerified: boolean;
+  role?: string;
+  permissions?: string[];
 }
 
 export const useAuth = () => {
@@ -30,12 +32,35 @@ export const useAuth = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const unsubscribeAuth = onAuthStateChanged(auth, async (firebaseUser) => {
-      if (firebaseUser) {
-        // Obtener datos adicionales del usuario desde Firestore
-        const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
+  const initializeUser = async (firebaseUser: User) => {
+    try {
+      // Primero creamos el documento si no existe
+      const userRef = doc(db, 'users', firebaseUser.uid);
+      const userDoc = await getDoc(userRef);
+
+      if (!userDoc.exists()) {
+        const newUser = {
+          uid: firebaseUser.uid,
+          email: firebaseUser.email,
+          displayName: firebaseUser.displayName,
+          phoneNumber: firebaseUser.phoneNumber,
+          emailVerified: firebaseUser.emailVerified,
+          phoneVerified: false,
+          role: 'user',
+          permissions: [],
+          createdAt: new Date().toISOString(),
+          lastLogin: new Date().toISOString()
+        };
+
+        await setDoc(userRef, newUser);
+        setUser(newUser);
+      } else {
         const userData = userDoc.data();
+        // Actualizar lastLogin
+        await setDoc(userRef, {
+          ...userData,
+          lastLogin: new Date().toISOString()
+        }, { merge: true });
 
         setUser({
           uid: firebaseUser.uid,
@@ -43,12 +68,31 @@ export const useAuth = () => {
           displayName: firebaseUser.displayName,
           phoneNumber: firebaseUser.phoneNumber,
           emailVerified: firebaseUser.emailVerified,
-          phoneVerified: userData?.phoneVerified || false,
+          phoneVerified: userData.phoneVerified || false,
+          role: userData.role || 'user',
+          permissions: userData.permissions || []
         });
-      } else {
-        setUser(null);
       }
-      setLoading(false);
+    } catch (error) {
+      console.error('Error initializing user:', error);
+      setError('Error al inicializar usuario');
+    }
+  };
+
+  useEffect(() => {
+    const unsubscribeAuth = onAuthStateChanged(auth, async (firebaseUser) => {
+      try {
+        if (firebaseUser) {
+          await initializeUser(firebaseUser);
+        } else {
+          setUser(null);
+        }
+      } catch (error) {
+        console.error('Error in auth state change:', error);
+        setError('Error en la autenticación');
+      } finally {
+        setLoading(false);
+      }
     });
 
     return () => unsubscribeAuth();
@@ -189,6 +233,10 @@ export const useAuth = () => {
     }
   };
 
+  const isAdmin = user?.role === 'admin';
+  const isSuperAdmin = user?.role === 'superadmin';
+  const userProfile = user;
+
   return {
     user,
     loading,
@@ -197,5 +245,8 @@ export const useAuth = () => {
     signInWithEmail,
     handleSocialSignIn,
     logout,
+    isAdmin,
+    isSuperAdmin,
+    userProfile,
   };
 };

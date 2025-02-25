@@ -8,14 +8,14 @@ import Image from 'next/image';
 export default function AdminLoginForm() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signInWithGoogle, signInWithApple } = useAuth();
+  const { handleSocialSignIn } = useAuth();
   const router = useRouter();
 
   const handleGoogleSignIn = async () => {
     try {
       setLoading(true);
       setError('');
-      await signInWithGoogle();
+      await handleSocialSignIn('google');
       router.push('/admin');
     } catch (err) {
       console.error('Error signing in with Google:', err);
@@ -29,7 +29,7 @@ export default function AdminLoginForm() {
     try {
       setLoading(true);
       setError('');
-      await signInWithApple();
+      await handleSocialSignIn('apple');
       router.push('/admin');
     } catch (err) {
       console.error('Error signing in with Apple:', err);

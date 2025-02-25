@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import AdminLoginForm from '@/components/Admin/AdminLoginForm';
+import AdminLoginForm from '@/components/admin/AdminLoginForm';
 
 export const metadata: Metadata = {
   title: 'Admin Login - ArtistsAid',

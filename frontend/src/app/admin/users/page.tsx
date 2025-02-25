@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
-import DashboardLayout from '@/components/Admin/Layout/DashboardLayout';
-import { collection, getDocs } from 'firebase/firestore';
+import DashboardLayout from '@/components/admin/Layout/DashboardLayout';
+import { collection, getDocs, Timestamp } from 'firebase/firestore';
 import { db } from '@/config/firebase';
 import { UserProfile } from '@/types/user';
 
@@ -19,7 +19,7 @@ export default function UsersPage() {
       return;
     }
 
-    if (!loading && !isSuperAdmin()) {
+    if (!loading && !isSuperAdmin) {
       router.push('/admin');
       return;
     }
@@ -110,7 +110,9 @@ export default function UsersPage() {
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {new Date(user.createdAt.seconds * 1000).toLocaleDateString()}
+                    {user.createdAt instanceof Timestamp ? 
+                      user.createdAt.toDate().toLocaleDateString() : 
+                      'Fecha no disponible'}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <button className="text-blue-600 hover:text-blue-900 mr-4">

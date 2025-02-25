@@ -3,11 +3,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
-import DashboardLayout from '@/components/Admin/Layout/DashboardLayout';
+import DashboardLayout from '@/components/admin/Layout/DashboardLayout';
 import { collection, addDoc, Timestamp } from 'firebase/firestore';
 import { db } from '@/config/firebase';
 import { Event } from '@/types/event';
-import ImageUpload from '@/components/Admin/ImageUpload';
+import ImageUpload from '@/components/admin/ImageUpload';
 
 export default function CreateEventPage() {
   const { userProfile, loading } = useAuth();
@@ -185,11 +185,10 @@ export default function CreateEventPage() {
             </label>
             <select
               value={formData.status}
-              onChange={(e) => setFormData({ ...formData, status: e.target.value as 'active' | 'inactive' })}
+              onChange={(e) => setFormData({ ...formData, status: e.target.value as 'active' })}
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               <option value="active">Activo</option>
-              <option value="inactive">Inactivo</option>
             </select>
           </div>
 

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
-import DashboardLayout from '@/components/Admin/Layout/DashboardLayout';
+import DashboardLayout from '@/components/admin/Layout/DashboardLayout';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '@/config/firebase';
 
@@ -29,7 +29,7 @@ export default function ArtistsPage() {
       return;
     }
 
-    if (!loading && !isAdmin()) {
+    if (!loading && !isAdmin) {
       router.push('/admin');
       return;
     }

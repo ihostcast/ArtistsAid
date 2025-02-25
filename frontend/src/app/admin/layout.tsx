@@ -1,6 +1,6 @@
 'use client';
 
-import DashboardLayout from '@/components/Admin/Layout/DashboardLayout';
+import DashboardLayout from '@/components/admin/Layout/DashboardLayout';
 
 export default function AdminLayout({
   children,

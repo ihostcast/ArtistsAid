@@ -3,15 +3,16 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
-import DashboardLayout from '@/components/Admin/Layout/DashboardLayout';
+import DashboardLayout from '@/components/admin/Layout/DashboardLayout';
 import { collection, query, orderBy, getDocs, Timestamp, addDoc } from 'firebase/firestore';
 import { db } from '@/config/firebase';
+import { Event } from '@/types/firestore';
 
 export default function EventsPage() {
   const { userProfile, loading, isAdmin } = useAuth();
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState<Event[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -23,7 +24,7 @@ export default function EventsPage() {
         return;
       }
 
-      if (!isAdmin()) {
+      if (!isAdmin) {
         router.push('/admin');
         return;
       }
@@ -42,7 +43,7 @@ export default function EventsPage() {
           updatedAt: doc.data().updatedAt instanceof Timestamp ? 
             doc.data().updatedAt.toDate() : 
             new Date(doc.data().updatedAt),
-        }));
+        })) as Event[];
 
         setEvents(eventsData);
         setError(null);
@@ -67,7 +68,7 @@ export default function EventsPage() {
     );
   }
 
-  if (!userProfile || !isAdmin()) {
+  if (!userProfile || !isAdmin) {
     return null;
   }
 
@@ -126,7 +127,9 @@ export default function EventsPage() {
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
-                      {event.date?.toLocaleDateString()}
+                      {event.date instanceof Timestamp ? 
+                        event.date.toDate().toLocaleDateString() : 
+                        'Fecha no disponible'}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${

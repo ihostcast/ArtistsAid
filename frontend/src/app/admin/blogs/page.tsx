@@ -3,11 +3,22 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
-import DashboardLayout from '@/components/Admin/Layout/DashboardLayout';
+import DashboardLayout from '@/components/admin/Layout/DashboardLayout';
 import { collection, query, orderBy, getDocs, Timestamp, addDoc } from 'firebase/firestore';
 import { db } from '@/config/firebase';
 import { Blog } from '@/types/blog';
 import { PencilIcon, TrashIcon, EyeIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
+import { FiEdit, FiTrash2, FiPlus } from 'react-icons/fi';
+
+interface Blog {
+  id: string;
+  title: string;
+  content: string;
+  status: string;
+  createdAt: any;
+  authorName: string;
+}
 
 export default function BlogsPage() {
   const { userProfile, loading } = useAuth();
@@ -86,8 +97,8 @@ export default function BlogsPage() {
   if (loading || isLoading) {
     return (
       <DashboardLayout>
-        <div className="flex items-center justify-center min-h-screen">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+        <div className="flex justify-center items-center min-h-screen">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
         </div>
       </DashboardLayout>
     );
@@ -112,12 +123,13 @@ export default function BlogsPage() {
             >
               Crear Blog de Prueba
             </button>
-            <button
-              onClick={() => router.push('/admin/blogs/create')}
+            <Link
+              href="/admin/blogs/create"
               className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
             >
-              Crear Nuevo Blog
-            </button>
+              <FiPlus className="mr-2" />
+              Nuevo Blog
+            </Link>
           </div>
         </div>
 
@@ -148,12 +160,15 @@ export default function BlogsPage() {
                     Título
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                    Autor
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                     Estado
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                     Fecha
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                     Acciones
                   </th>
                 </tr>
@@ -164,6 +179,11 @@ export default function BlogsPage() {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900 dark:text-white">
                         {blog.title}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-500 dark:text-gray-300">
+                        {blog.author.name}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
@@ -178,19 +198,19 @@ export default function BlogsPage() {
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
                       {blog.createdAt.toLocaleDateString()}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <button
-                        onClick={() => router.push(`/admin/blogs/${blog.id}`)}
-                        className="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 mr-3"
+                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <Link
+                        href={`/admin/blogs/${blog.id}`}
+                        className="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 mr-4"
                       >
-                        <EyeIcon className="h-5 w-5" />
-                      </button>
-                      <button
-                        onClick={() => router.push(`/admin/blogs/${blog.id}/edit`)}
-                        className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-300 mr-3"
+                        <EyeIcon className="inline-block" />
+                      </Link>
+                      <Link
+                        href={`/admin/blogs/${blog.id}/edit`}
+                        className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-300 mr-4"
                       >
-                        <PencilIcon className="h-5 w-5" />
-                      </button>
+                        <FiEdit className="inline-block" />
+                      </Link>
                       {userProfile.role === 'superadmin' && (
                         <button
                           onClick={() => {
@@ -200,7 +220,7 @@ export default function BlogsPage() {
                           }}
                           className="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300"
                         >
-                          <TrashIcon className="h-5 w-5" />
+                          <FiTrash2 className="inline-block" />
                         </button>
                       )}
                     </td>
