@@ -1,8 +1,8 @@
 'use client';
 
 import { type ReactNode, useEffect } from 'react';
-import { db } from '@/config/firebase';
-import { useAuth } from '@/hooks/useAuth';
+import { db } from '../../config/firebase';
+import { useAuth } from '../../hooks/useAuth';
 import { doc, getDoc } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
 
