@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/$1"
+    }
+  ],
+  "env": {
+    "NEXT_PUBLIC_API_URL": "https://artistsaid.com/api",
+    "NEXT_PUBLIC_APP_URL": "https://artistsaid.com",
+    "NEXT_PUBLIC_ADMIN_URL": "https://admin.artistsaid.com"
+  }
+}
